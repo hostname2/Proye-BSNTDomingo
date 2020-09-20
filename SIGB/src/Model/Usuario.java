@@ -5,16 +5,16 @@ public class Usuario {
     
     private String pn_sContrasena;
     private boolean pn_sTipo;
-    private String pn_sIdPersona;
+    private Persona pn_pPersona;
 
     public Usuario() {
-        this("", false, "");
+        this("",false, new Persona());
     }
 
-    public Usuario(String pn_sContrasena, boolean pn_sTipo, String pn_sIdPersona) {
+    public Usuario(String pn_sContrasena, boolean pn_sTipo, Persona pn_pPersona) {
         this.pn_sContrasena = pn_sContrasena;
         this.pn_sTipo = pn_sTipo;
-        this.pn_sIdPersona = pn_sIdPersona;
+        this.pn_pPersona = pn_pPersona;
     }
 
     public String getPn_sContrasena() {
@@ -33,17 +33,17 @@ public class Usuario {
         this.pn_sTipo = pn_sTipo;
     }
 
-    public String getPn_sIdPersona() {
-        return pn_sIdPersona;
+    public Persona getPn_pPersona() {
+        return pn_pPersona;
     }
 
-    public void setPn_sIdPersona(String pn_sIdPersona) {
-        this.pn_sIdPersona = pn_sIdPersona;
+    public void setPn_pPersona(Persona pn_pPersona) {
+        this.pn_pPersona = pn_pPersona;
     }
 
     @Override
     public String toString() {
-        return "Usuario{" + "pn_sContrasena=" + pn_sContrasena + ", pn_sTipo=" + pn_sTipo + ", pn_sIdPersona=" + pn_sIdPersona + '}';
+        return "Usuario{" + "pn_sContrasena=" + pn_sContrasena + ", pn_sTipo=" + pn_sTipo + ", pn_pPersona=" + pn_pPersona + '}';
     }
     
 }
