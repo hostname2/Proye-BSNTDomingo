@@ -76,7 +76,7 @@ public class GestorBD {
     }
 
     private static final String CLASE_MANEJADOR = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    private static final String FORMATO_CONEXION = "%s//%s\\SQLEXPRESS:%s;databaseName=%s;user=%s;password=%s";
+   private static final String FORMATO_CONEXION = "%s//%s:%s;databaseName=%s;user=%s;password=%s";
     public static final String PROPERTIES_FILE_NAME = "configuracion.properties";
     private static GestorBD instancia = null;
     private Connection cnx = null;
