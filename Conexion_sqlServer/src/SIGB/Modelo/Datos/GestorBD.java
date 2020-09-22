@@ -38,9 +38,11 @@ public class GestorBD {
 //        Connection cnx = null;
         try {
             Properties prop = new Properties();
-            URL resourceUrl = getClass().getResource(PROPERTIES_FILE_NAME);
-            File file = new File(resourceUrl.toURI());
-            prop.load(new BufferedInputStream(new FileInputStream(file)));
+              prop.load(getClass().getResourceAsStream(PROPERTIES_FILE_NAME));
+            
+//            URL resourceUrl = getClass().getResource(PROPERTIES_FILE_NAME);
+//            File file = new File(resourceUrl.toURI());
+//            prop.load(new BufferedInputStream(new FileInputStream(file)));
             String port = prop.getProperty("database_port");
             String user = prop.getProperty("database_user");
             String protocolo = prop.getProperty("database_protocolo");
@@ -59,7 +61,7 @@ public class GestorBD {
                 System.out.println("Malo");
             }
 
-        } catch (URISyntaxException | IOException | SQLException ex) {
+        } catch (IOException | SQLException ex) {
             Logger.getLogger(GestorBD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return cnx;
@@ -76,7 +78,8 @@ public class GestorBD {
     }
 
     private static final String CLASE_MANEJADOR = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-   private static final String FORMATO_CONEXION = "%s//%s:%s;databaseName=%s;user=%s;password=%s";
+    private static final String FORMATO_CONEXION = "%s//%s:%s;databaseName=%s;user=%s;password=%s";
+    //private static final String FORMATO_CONEXION = "%s//%s\\SQLEXPRESS:%s;databaseName=%s;user=%s;password=%s";
     public static final String PROPERTIES_FILE_NAME = "configuracion.properties";
     private static GestorBD instancia = null;
     private Connection cnx = null;
