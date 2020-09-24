@@ -13,7 +13,8 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-          <strong><a href="agregarPizza.jsp">2. Mostrar Documentos</a></strong> </br>
+          <strong><a href="Busqueda.jsp">2. Mostrar Documentos</a></strong> </br>
           <strong><a href="EliminarDoc.jsp">3. Eliminar Documento</a></strong> </br>
+          <strong><a href="Busqueda.jsp">3. Eliminar Documento</a></strong> </br>
     </body>
 </html>
