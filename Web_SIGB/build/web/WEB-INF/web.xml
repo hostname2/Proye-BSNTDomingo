@@ -4,9 +4,25 @@
         <servlet-name>EliminarDocumento</servlet-name>
         <servlet-class>Servicios.EliminarDocumento</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegistroUsuario</servlet-name>
+        <servlet-class>Servicios.RegistroUsuario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ActualizarUsuario</servlet-name>
+        <servlet-class>Servicios.ActualizarUsuario</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>EliminarDocumento</servlet-name>
         <url-pattern>/EliminarDocumento</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegistroUsuario</servlet-name>
+        <url-pattern>/RegistroUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ActualizarUsuario</servlet-name>
+        <url-pattern>/ActualizarUsuario</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
