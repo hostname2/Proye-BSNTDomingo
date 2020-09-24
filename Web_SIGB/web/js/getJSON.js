@@ -10,7 +10,7 @@ function getJSON(url, data, callback) {
         method: 'POST',
         body: data
     }).then((result) => {
-//        return result.json();
+        return result.json();
     }).then(callback);
 }
 

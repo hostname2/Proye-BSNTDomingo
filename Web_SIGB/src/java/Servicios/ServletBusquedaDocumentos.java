@@ -5,15 +5,21 @@
  */
 package Servicios;
 
+import SIGB.Modelo.Dao.GestorDao_Documento;
+import SIGB.Modelo.Entidades.Documento;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.Enumeration;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import org.json.JSONObject;
 
 @WebServlet(
         name = "ServletBusquedaDocumentos",
@@ -40,14 +46,72 @@ public class ServletBusquedaDocumentos extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             System.out.println("Aca se cargarian los datos");
+            JSONObject r = null;
+
+            Enumeration<String> p = request.getParameterNames();
+            String dato = null;
+            while (p.hasMoreElements()) {
+                String n = p.nextElement();
+                String[] v = request.getParameterValues(n);
+                if (v.length == 1) {
+                    dato = v[0];
+                }
+            }
+            if (isNumeric(dato)) {
+                r = this.DocumentosJson(Integer.parseInt(dato));
+            }
+
+            if (r != null) {
+                out.println(r.toString(4));
+            }
+            System.out.printf("Datos enviados:\n%s\n", r.toString(4));
         }
     }
 
-    public void ListaDocumentosJson(String porDato) {
-        System.out.println("Aca se cargarian los datos");
+    private JSONObject DocumentosJson(int porDato) {
+        System.out.println("Aca se cargarian los datos con la informacion de ");
+        //Documento doc = new Documento(0, "Accion", "Ingles", "2000", "casas", "pepe camacho", "ciencias", "editorial", "muchas paginas", "12345", 3, "bueno", "7410", "fisico", "Articulo");
+        Documento doc = null;
+        try {
+            doc = pf_sGD.getDocumento(porDato);
+        }
+         catch (Exception ex) {
+//            Logger.getLogger(ServletBusquedaDocumentos.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Cae en excepcion");
+        }
+        JSONObject r = new JSONObject();
+        if (doc != null) {
+        r.put("pn_sIdDocumento", doc.getPn_sIdDocumento());
+        r.put("pn_sClasicación", doc.getPn_sClasicación());
+        r.put("pn_sIdioma", doc.getPn_sIdioma());
+        r.put("pn_sFechaEdicion", doc.getPn_sFechaEdicion());
+        r.put("pn_sTitulo", doc.getPn_sTitulo());
+        r.put("pn_sAutor", doc.getPn_sAutor());
+        r.put("pn_sMateria", doc.getPn_sMateria());
+        r.put("pn_sLugEditorial", doc.getPn_sLugEditorial());
+        r.put("pn_sDesFisica", doc.getPn_sDesFisica());
+        r.put("pn_sISBN", doc.getPn_sISBN());
+        r.put("pn_sEjemplares", doc.getPn_sEjemplares());
+        r.put("pn_sNota", doc.getPn_sNota());
+        r.put("pn_sTipo", doc.getPn_sTipo());
+        r.put("pn_sISN", doc.getPn_sISN());
+        r.put("pn_sFormatoDoc", doc.getPn_sFormatoDoc());
+        }
+
+        //System.out.printf("Datos enviados:\n%s\n", r.toString(4));
+        return r;
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    private static boolean isNumeric(String cadena) {
+        try {
+            Integer.parseInt(cadena);
+            return true;
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+    }
+
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -86,4 +150,5 @@ public class ServletBusquedaDocumentos extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    private final GestorDao_Documento pf_sGD = GestorDao_Documento.getInstancia();
 }
