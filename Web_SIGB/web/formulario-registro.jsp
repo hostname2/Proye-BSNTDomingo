@@ -25,7 +25,7 @@
             <h2>Crear Cuenta</h2>
         </div>
 
-        <form class="form" id="form">
+        <form class="form" id="form" method="POST" action="RegistroUsuario">
             <div class="form-control">
                 <label for="nombre">Nombre</label>
                 <input type="text" placeholder="Ej. Juan" id="nombre">
@@ -37,6 +37,14 @@
             <div class="form-control">
                 <label for="apellido">Apellido</label>
                 <input type="text" placeholder="Ej. Alvarado" id="apellido">
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Mensaje de error</small>
+            </div>
+            
+            <div class="form-control">
+                <label for="apellido2">Apellido</label>
+                <input type="text" placeholder="Ej. Alvarado" id="apellido2">
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
                 <small>Mensaje de error</small>
@@ -98,7 +106,7 @@
                 <small>Mensaje de error</small>
             </div> 
 
-            <button>Registrar</button>
+            <button type="submit">Registrar</button>
         </form>
     </div>
 </body>

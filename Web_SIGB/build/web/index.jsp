@@ -31,7 +31,7 @@
                         <a href="#">Servicios</a>
                         <a href="#">Préstamos</a>
                         <a href="http://www.santodomingo.go.cr/">Municipalidad</a>
-                        <a href="#">Contacto</a>
+                        <a href="administracion.jsp">Administración</a>
                     </nav>
                 </div>
             </header>

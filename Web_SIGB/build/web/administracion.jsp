@@ -63,6 +63,7 @@
                         <li><a href="administracion.html">&nbsp;Administrar Libros</a></li>
                         <li><a href="#">Préstamos</a></li>
                         <li><a href="#">Usuarios</a></li>
+                        <li><a href="EliminarDoc.jsp">Eliminar Docuemto</a></li>
                     </ul>
                 </div>
                 <!--Carrito-->

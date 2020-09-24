@@ -12,10 +12,16 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+@WebServlet(
+        name = "RegistroUsuario",
+        urlPatterns = {"/RegistroUsuario", "/formulario-registro"}
+)
 
 public class RegistroUsuario extends HttpServlet {
 
@@ -30,19 +36,23 @@ public class RegistroUsuario extends HttpServlet {
      */
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        System.out.println("ServidorRegitroUsuarios");
+
         response.setContentType("text/html;charset=UTF-8");
-        String destino = "";
+        String destino = "index.jsp";
 
-        String sl_contrasena = request.getParameter("contrasena");
-        boolean bl_tipo = Boolean.valueOf(request.getParameter("tipo"));
-        String sl_id = this.checkId(request.getParameter("id"));
+        String sl_contrasena = request.getParameter("contraseña");
+        String sl_contrasena2 = request.getParameter("contraseña-2");
+        boolean bl_tipo = false;
+        String sl_id = request.getParameter("cedula");
         String sl_nombre = request.getParameter("nombre");
-        String sl_apellido1 = request.getParameter("apellido1");
+        String sl_apellido1 = request.getParameter("apellido");
         String sl_apellido2 = request.getParameter("apellido2");
-        String sl_email = request.getParameter("email");
+        String sl_email = request.getParameter("correo");
 
-        String sl_fecNac = request.getParameter("fecNac");
-        SimpleDateFormat fl_formatoDelTexto = new SimpleDateFormat("dd/MM/yyyy");
+        String sl_fecNac = request.getParameter("fecha-naci");
+        System.out.println(sl_fecNac);
+        SimpleDateFormat fl_formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date dl_fecha = null;
         try {
             dl_fecha = fl_formatoDelTexto.parse(sl_fecNac);
@@ -57,25 +67,35 @@ public class RegistroUsuario extends HttpServlet {
         String mensaje = "";
 
         if (Auxiliar.validacion(request, response)) {
-            if (this.verificarDatos(sl_contrasena, sl_id, sl_nombre, sl_apellido1, sl_apellido2, sl_email, sl_fecNac, il_telefono, sl_direccion)) {
+            System.out.println("Pasa la validación del request");
 
-                try {
-                    if (pf_sUD.agregarUsuario(new Usuario(sl_contrasena, bl_tipo, new Persona(sl_id, sl_nombre, sl_apellido1, sl_apellido2, sl_email, dl_fecha, il_telefono, sl_direccion)))) {
-                        mensaje = "Usuario Registrado con exito";
-                        sesion_error.setAttribute("Mensaje", mensaje + "_" + "index.jsp");
-                        destino = "paginaError.jsp";
-                    } else {
-                        mensaje = "Faltan datos para registrar Usuario";
+            if (this.confirmarContrasena(sl_contrasena, sl_contrasena2)) {
+
+                if (this.verificarDatos(sl_contrasena, sl_id, sl_nombre, sl_apellido1, sl_apellido2, sl_email, sl_fecNac, il_telefono, sl_direccion)) {
+
+                    try {
+                        if (pf_sUD.agregarUsuario(new Usuario(sl_contrasena, bl_tipo, new Persona(sl_id, sl_nombre, sl_apellido1, sl_apellido2, sl_email, dl_fecha, il_telefono, sl_direccion)))) {
+                            mensaje = "Usuario Registrado con exito";
+                            sesion_error.setAttribute("Mensaje", mensaje + "_" + "index.jsp");
+                            destino = "paginaError.jsp";
+                        } else {
+                            mensaje = "Faltan datos para registrar Usuario";
+                            sesion_error.setAttribute("Mensaje", mensaje + "_" + "index.jsp");
+                            destino = "paginaError.jsp";
+                        }
+                    } catch (Exception ex) {
+                        mensaje = "Error al registrar Usuario";
                         sesion_error.setAttribute("Mensaje", mensaje + "_" + "index.jsp");
                         destino = "paginaError.jsp";
                     }
-                } catch (Exception ex) {
-                    mensaje = "Error al registrar Usuario";
-                    sesion_error.setAttribute("Mensaje", mensaje + "_" + "index.jsp");
-                    destino = "paginaError.jsp";
-                }
 
+                }
+            } else {
+                mensaje = "La contraseña no puede tener menos de 8 o más de 20 digitos";
+                sesion_error.setAttribute("Mensaje", mensaje + "_" + "index.jsp");
+                destino = "paginaError.jsp";
             }
+            
         } else {
             mensaje = "Error al registrar Usuario";
             sesion_error.setAttribute("Mensaje", mensaje + "_" + "index.jsp");
@@ -97,6 +117,16 @@ public class RegistroUsuario extends HttpServlet {
             HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+    }
+
+    private boolean confirmarContrasena(String con1, String con2) {
+
+        if (con1.length() < 8 || con1.length() > 20) {
+            return false;
+        } else {
+            return true;
+        }
+
     }
 
     private String checkId(String txt) {

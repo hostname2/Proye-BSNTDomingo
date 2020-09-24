@@ -15,6 +15,10 @@
     <servlet>
         <servlet-name>RegistroUsuario</servlet-name>
         <servlet-class>Servicios.RegistroUsuario</servlet-class>
+        <init-param>
+            <param-name>formulario-registro</param-name>
+            <param-value>/formulario-registro.jsp</param-value>
+        </init-param>
     </servlet>
     <servlet>
         <servlet-name>ServletBusquedaDocumentos</servlet-name>
