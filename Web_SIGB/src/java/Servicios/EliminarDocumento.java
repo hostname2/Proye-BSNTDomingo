@@ -31,39 +31,38 @@ public class EliminarDocumento extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         response.setContentType("text/html;charset=UTF-8");
         response.setHeader("cache-control", "no-cache, no-store, must-revalidate");
 
         GestorDao_Documento gD = GestorDao_Documento.getInstancia();
-        String datoDoc = request.getParameter("dato");
+        String datoDoc = request.getParameter("codigo");
         String Mensaje = "";
-        int dest = Integer.parseInt(datoDoc);
-        String destino = "";
-        System.out.println(dest);
+
+        String destino = "paginaError.jsp";;
+        // System.out.println(dest);
         HttpSession sesion_error = request.getSession(true);
+
         try {
-            gD.eliminarDocumento(dest);
+            int dest = Integer.parseInt(datoDoc);
 
-            Mensaje = "Se eliminó el Documento";
+            if (gD.eliminarDocumento(dest)) {
+                Mensaje = "Se eliminó el Documento";
+                sesion_error.setAttribute("Mensaje", Mensaje + "_" + "index.jsp");
+            } else {
+                Mensaje = "NO SE PUEDE ELIMINAR ESTE ARTICULO. Llame a soporte tecnico";
+                sesion_error.setAttribute("Mensaje", Mensaje + "_" + "index.jsp");
+            }
+          //  System.out.println("dddddd");
+
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException | NumberFormatException ex) {
+            Mensaje = "NO SE PUEDE ELIMINAR ESTE ARTICULO. Llame a soporte tecnico";
             sesion_error.setAttribute("Mensaje", Mensaje + "_" + "index.jsp");
-            destino = "paginaError.jsp";
 
-       
-
-            response.sendRedirect(destino);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(EliminarDocumento.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(EliminarDocumento.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(EliminarDocumento.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(EliminarDocumento.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(EliminarDocumento.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        response.sendRedirect(destino);
 
     }
 
