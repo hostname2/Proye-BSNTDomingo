@@ -31,7 +31,7 @@ public class RegistroUsuario extends HttpServlet {
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         response.setContentType("text/html;charset=UTF-8");
-        String destino = "registroAceptado.jsp";
+        String destino = "";
 
         String sl_contrasena = request.getParameter("contrasena");
         boolean bl_tipo = Boolean.valueOf(request.getParameter("tipo"));

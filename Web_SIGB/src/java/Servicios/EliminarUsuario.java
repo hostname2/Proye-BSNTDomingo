@@ -31,7 +31,7 @@ public class EliminarUsuario extends HttpServlet {
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         response.setContentType("text/html;charset=UTF-8");
-        String destino = "registroAceptado.jsp";
+        String destino = "";
 
         String sl_id = this.checkId(request.getParameter("id"));
 
