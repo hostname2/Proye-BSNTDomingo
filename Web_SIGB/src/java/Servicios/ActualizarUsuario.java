@@ -1,6 +1,7 @@
 
 package Servicios;
 
+import Beans.Auxiliar;
 import SIGB.Modelo.Dao.GestorDao_Usuario;
 import SIGB.Modelo.Entidades.Persona;
 import SIGB.Modelo.Entidades.Usuario;
@@ -15,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class ActualizarUsuario extends HttpServlet {
 
@@ -52,21 +54,33 @@ public class ActualizarUsuario extends HttpServlet {
         int il_telefono = Integer.parseInt(request.getParameter("telefono"));
         String sl_direccion = request.getParameter("direccion");
 
-        if (Formulario.validacion(request, response)) {
+        HttpSession sesion_error = request.getSession(true);
+        String mensaje = "";
+
+        if (Auxiliar.validacion(request, response)) {
             if (this.verificarDatos(sl_contrasena, sl_id, sl_nombre, sl_apellido1, sl_apellido2, sl_email, sl_fecNac, il_telefono, sl_direccion)) {
 
                 try {
                     if (pf_sUD.actualizarUsuario(new Usuario(sl_contrasena, bl_tipo, new Persona(sl_id, sl_nombre, sl_apellido1, sl_apellido2, sl_email, dl_fecha, il_telefono, sl_direccion)))) {
-                        destino = "exito.jsp?exito=2";
+                        mensaje = "Usuario Actualizado con exito";
+                        sesion_error.setAttribute("Mensaje", mensaje + "_" + "index.jsp");
+                        destino = "paginaError.jsp";
                     } else {
-                        destino = "error.jsp?error=4";
+                        mensaje = "Faltan datos para actualizar Usuario";
+                        sesion_error.setAttribute("Mensaje", mensaje + "_" + "index.jsp");
+                        destino = "paginaError.jsp";
                     }
                 } catch (Exception ex) {
+                    mensaje = "Error al actualizar Usuario";
+                    sesion_error.setAttribute("Mensaje", mensaje + "_" + "index.jsp");
+                    destino = "paginaError.jsp";
                 }
-                
+
             }
         } else {
-            destino = "error.jsp?error=24";
+            mensaje = "Error al actualizar Usuario";
+            sesion_error.setAttribute("Mensaje", mensaje + "_" + "index.jsp");
+            destino = "paginaError.jsp";
         }
 
         response.sendRedirect(destino);

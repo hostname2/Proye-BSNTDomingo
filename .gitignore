@@ -25,3 +25,4 @@ hs_err_pid*
 /SIGB/build/
 /SIGB/dist/
 /Conexion_sqlServer/dist/
+/Web_SIGB/dist/
