@@ -4,15 +4,17 @@
     Author     : sebas
 --%>
 
+<%@page import="Servicios.ServletBusquedaDocumentos"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-         <script src="js/BuscarScript.js" type="text/javascript"></script>
+        <script src="js/getJSON.js" type="text/javascript"></script>
+        <script src="js/BuscarScript.js" type="text/javascript"></script>
         <title>Busqueda de Dcoumentos</title>
     </head>
-    <body onload="init();">
+    <body onload="">
         <!-----------------FIN NAVBAR---------------->
 
         <!-----------------COMIENZA LA PARTE DEL CONTENIDO---------------->
@@ -20,27 +22,27 @@
             <!-----------------INICIO CONTENIDO---------------->
             <div class="documentos">
                 <!--<form id="formulario">-->
-                        <table class="tablaFormulario">
-                            <caption>
-                                <h2 style="color: black">Administracion de busqueda</h2>
-                            </caption>
-                            <tbody>
-                                <tr>
-                                    <td class="etiqueta">
-                                        <label for="cedula"><strong>Digite el id:</strong></label>
-                                    </td>
-                                    <td class="campo">
-                                        <input type="text" id="dato" name="dato" size="25" required/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" class="controles">
-                                        <button onclick="obtenerLista();">Bsucar</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                   <!--</form>-->
+                <table class="tablaFormulario">
+                    <caption>
+                        <h2 style="color: black">Administracion de busqueda</h2>
+                    </caption>
+                    <tbody>
+                        <tr>
+                            <td class="etiqueta">
+                                <label for="cedula"><strong>Digite el id:</strong></label>
+                            </td>
+                            <td class="campo">
+                                <input type="text" id="dato" name="dato" size="25" required/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="controles">
+                                <button onclick="obtenerLista();">Bsucar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!--</form>-->
             </div>
             <div class="contenido">
                 <!-------------------FILA 1-------------------->
