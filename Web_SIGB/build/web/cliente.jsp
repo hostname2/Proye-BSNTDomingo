@@ -1,7 +1,7 @@
 <%-- 
-    Document   : index
-    Created on : 21/09/2020, 09:27:51 PM
-    Author     : Marvin
+    Document   : cliente
+    Created on : 24-sep-2020, 8:32:48
+    Author     : Grelvin
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -26,8 +26,8 @@
                         <a href="#">Biblioteca Municipal Isaac Felipe Azofeifa</a>
                     </div>
                     <nav>
-                        <a href="#" onclick="LoginToggle()">Inicio Sesión</a>
-                        <a href="Busqueda.jsp">Búsqueda</a>
+                        <a href="index.html">Salir</a>
+                        <a href="#">Búsqueda</a>
                         <a href="#">Servicios</a>
                         <a href="#">Préstamos</a>
                         <a href="http://www.santodomingo.go.cr/">Municipalidad</a>

@@ -10,10 +10,13 @@ import SIGB.Modelo.Dao.IMEC.IMEC_Persona;
 import SIGB.Modelo.Datos.GestorBD;
 import SIGB.Modelo.Entidades.Documento;
 import SIGB.Modelo.Entidades.Persona;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 //import java.sql.ResultSet;
 //import java.sql.SQLException;
 //import java.sql.Statement;
@@ -250,6 +253,38 @@ public class GestorDao_Documento {
             }
         }
         return m;
+    }
+
+    public List<Documento> obtenerListadoDocs() {
+        List<Documento> r = new ArrayList<>();
+        try (Connection cnx = obtenerConexion();
+                PreparedStatement stm = cnx.prepareStatement(IMEC_Documento.LISTADO.obtenerComando())) {
+            stm.clearParameters();
+            try (ResultSet rs = stm.executeQuery()) {
+                while (rs.next()) {
+                    Documento doc = new Documento();
+                    doc.setPn_sIdDocumento(rs.getInt("idDocumento"));
+                    doc.setPn_sClasicación(rs.getString("Clasificacion"));
+                    doc.setPn_sIdioma(rs.getString("Idioma"));
+                    doc.setPn_sFechaEdicion(rs.getString("Fec_edicion"));
+                    doc.setPn_sTitulo(rs.getString("Titulo"));
+                    doc.setPn_sAutor(rs.getString("Autor"));
+                    doc.setPn_sMateria(rs.getString("Materia"));
+                    doc.setPn_sLugEditorial(rs.getString("Lugar_Editorial"));
+                    doc.setPn_sDesFisica(rs.getString("Des_Fisica"));
+                    doc.setPn_sISBN(rs.getString("ISBN"));
+                    doc.setPn_sEjemplares(rs.getInt("Ejemplares"));
+                    doc.setPn_sNota(rs.getString("Nota"));
+                    doc.setPn_sNota(rs.getString("ISN"));
+                    doc.setPn_sNota(rs.getString("Formato_Doc"));
+                    doc.setPn_sNota(rs.getString("Tipo_Nombre"));
+                    r.add(doc);
+                }
+            }
+        } catch (SQLException ex) {
+            System.err.printf("Excepción: '%s'%n", ex.getMessage());
+        }
+        return r;
     }
 
     private static GestorDao_Documento instancia = null;

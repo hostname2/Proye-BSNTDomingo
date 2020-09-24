@@ -20,6 +20,10 @@
         <servlet-name>ServletBusquedaDocumentos</servlet-name>
         <servlet-class>Servicios.ServletBusquedaDocumentos</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListadoDocumentos</servlet-name>
+        <servlet-class>Servicios.ListadoDocumentos</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>EliminarDocumento</servlet-name>
         <url-pattern>/EliminarDocumento</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>ServletBusquedaDocumentos</servlet-name>
         <url-pattern>/ServletBusquedaDocumentos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListadoDocumentos</servlet-name>
+        <url-pattern>/ListadoDocumentos</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
