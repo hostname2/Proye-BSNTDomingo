@@ -8,3 +8,56 @@ and open the template in the editor.
     Author     : sebas
 */
 
+
+body{
+    margin: 0px;
+    padding: 0px;
+    background-color: #9d9d9d;
+}
+
+.tablaCuentas{
+    /*position: absolute;*/
+    z-index: 2;
+    left: 10%;
+    top: 45%;
+    /*transform: translate(-30%,-30%);*/
+    width: 80%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border-radius: 12px 12px 0 0;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(32,32,32,.3);
+    background: #fafafa;
+    text-align: center;
+}
+
+.tablaCuentas th,.tablaCuentas td{
+    padding: 12px 15px;
+}
+
+.tablaCuentas th{
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    background: #297045;
+    color: #fafafa;
+    text-transform: uppercase;
+}
+
+.tablaCuentas .c2b{
+    padding-top: 6px;
+    padding-bottom: 6px;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.tablaCuentas .c2c{
+    text-align: right;
+    font-weight: bold;
+}
+
+.tablaCuentas tbody tr:nth-of-type(even){
+    background-color: #ededed;
+}

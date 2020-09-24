@@ -10,6 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="css/BusquedaStyle.css" rel="stylesheet" type="text/css"/>
         <script src="js/getJSON.js" type="text/javascript"></script>
         <script src="js/BuscarScript.js" type="text/javascript"></script>
         <title>Busqueda de Dcoumentos</title>
