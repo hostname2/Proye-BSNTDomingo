@@ -52,7 +52,7 @@
                     <input type="text" placeholder="Cédula">
                     <input type="password" placeholder="Contraseña">
                     <input type="submit" value="Iniciar" class="iniciar">
-                    <a href="formulario-registro.html">Regístrese aquí</a>
+                    <a href="formulario-registro.jsp">Regístrese aquí</a>
                 </form>
             </div>
         </div>

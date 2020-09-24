@@ -72,7 +72,7 @@ public class ListadoDocumentos extends HttpServlet {
             a.put(toJSON(p));
         });
         JSONObject r = new JSONObject();
-        r.put("lista-pizzas", a);
+        r.put("lista-libros", a);
         return r;
     }
 

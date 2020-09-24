@@ -25,7 +25,7 @@
                 <!--<form id="formulario">-->
                 <table class="tablaFormulario">
                     <caption>
-                        <h2 style="color: black">Administracion de busqueda</h2>
+                        <h2 style="color: black">Busqueda</h2>
                     </caption>
                     <tbody>
                         <tr>
