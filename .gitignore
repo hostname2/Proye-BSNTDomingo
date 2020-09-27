@@ -14,12 +14,3 @@
 
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-/SIGB/nbproject/private/
-/SIGB/build/
-/SIGB/dist/
-/Conexion_sqlServer/dist/
-/Web_SIGB/dist/
-/Libreria JSON/JSONLib/JSONLib/build/
-/Libreria JSON/JSONLib/JSONLib/dist/
-/Libreria JSON/JSONLib/JSONLib/nbproject/private/
