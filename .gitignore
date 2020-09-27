@@ -20,3 +20,6 @@ hs_err_pid*
 /SIGB/dist/
 /Conexion_sqlServer/dist/
 /Web_SIGB/dist/
+/Libreria JSON/JSONLib/JSONLib/build/
+/Libreria JSON/JSONLib/JSONLib/dist/
+/Libreria JSON/JSONLib/JSONLib/nbproject/private/
