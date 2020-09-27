@@ -122,6 +122,7 @@ function agregar(nuevoDoc) {
 }
 
 function BackBean() {
+    
     this.dato = null;
 }
 
