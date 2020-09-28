@@ -74,6 +74,7 @@ public class ServletBusquedaDocumentos extends HttpServlet {
         Documento doc = null;
         try {
             doc = pf_sGD.getDocumento(porDato);
+            System.out.println(doc.toString());
         }
          catch (Exception ex) {
 //            Logger.getLogger(ServletBusquedaDocumentos.class.getName()).log(Level.SEVERE, null, ex);
