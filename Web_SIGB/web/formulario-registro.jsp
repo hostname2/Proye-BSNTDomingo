@@ -92,7 +92,7 @@
 
             <div class="form-control">
                 <label for="contrasena">Contraseña</label>
-                <input type="password" placeholder="Contraseña" id="contrasena" name="contrasena" required>
+                <input type="password" maxlength="16" placeholder="Contraseña" id="contrasena" name="contrasena" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title=" La contraseña debe contener al menos un número, una letra mayuscula y una letra en minuscula, y con una longitud mínima de 8 simbolos y maxima de 16" required>
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
                 <small>Mensaje de error</small>
@@ -100,13 +100,14 @@
 
             <div class="form-control">
                 <label for="contrasena2">Confirmar Contraseña</label>
-                <input type="password" placeholder="Confirmar contraseña" id="contrasena2" name="contrasena2" required>
+                <input type="password" maxlength="16" placeholder="Confirmar contraseña" id="contrasena2" name="contrasena2" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title=" La contraseña debe contener al menos un número o un simbolo, una letra mayuscula y una letra en minuscula, y con una longitud mínima de 8 simbolos y maxima de 16" required>
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
                 <small>Mensaje de error</small>
             </div> 
 
-            <input type="submit" value="Registrar" ><br>
+            <button type="submit"> Registrarse </button><br>
+            
         </form>
     </div>
 </body>

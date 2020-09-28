@@ -24,6 +24,10 @@
         <servlet-name>ServletRegistroUser</servlet-name>
         <servlet-class>Servicios.ServletRegistroUser</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SeveltLogin</servlet-name>
+        <servlet-class>Servicios.SeveltLogin</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>EliminarDocumento</servlet-name>
         <url-pattern>/EliminarDocumento</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>ServletRegistroUser</servlet-name>
         <url-pattern>/ServletRegistroUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SeveltLogin</servlet-name>
+        <url-pattern>/SeveltLogin</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 public class GestorDao_Persona {
 
-    public GestorDao_Persona() {
+ public GestorDao_Persona() {
         bd = GestorBD.obtenerInstancia();
     }
 

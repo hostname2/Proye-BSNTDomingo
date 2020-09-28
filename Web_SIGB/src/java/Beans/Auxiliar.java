@@ -3,6 +3,8 @@ package Beans;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +20,26 @@ public class Auxiliar implements Serializable {
         }
 
         return true;
+    }
+    
+    public static String checkId(String txt) {
+        
+        Pattern patron = Pattern.compile("-");
+        Matcher encaja = patron.matcher(txt);
+        String r = encaja.replaceAll("0");
+
+        return r;
+    }
+    
+    public static String eliminarEspacios(String txt) {
+        
+        Pattern patron = Pattern.compile(" ");
+        Matcher encaja = patron.matcher(txt);
+        String r = encaja.replaceAll("");
+        
+        System.out.println(r + "-----");
+
+        return r;
     }
     
 }

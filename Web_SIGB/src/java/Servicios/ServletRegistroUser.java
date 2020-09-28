@@ -5,6 +5,7 @@
  */
 package Servicios;
 
+import Beans.Auxiliar;
 import SIGB.Modelo.Dao.GestorDao_Persona;
 import SIGB.Modelo.Dao.GestorDao_Usuario;
 import SIGB.Modelo.Entidades.Persona;
@@ -16,11 +17,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -40,14 +44,18 @@ public class ServletRegistroUser extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String destino = "registroAceptado.jsp";
+        String destino = "cliente.jsp";
+        
+        HttpSession sesion_error = request.getSession(true);
+        String error = "";
+        
         GestorDao_Persona gP = GestorDao_Persona.getInstancia();
         GestorDao_Usuario gU = GestorDao_Usuario.getInstancia();
 
         String sl_contrasena = request.getParameter("contrasena");
         boolean bl_tipo = false;
                 //Boolean.valueOf(request.getParameter("tipo"));
-        String sl_id = request.getParameter("cedula");
+        String sl_id = Auxiliar.checkId(request.getParameter("cedula"));
         String sl_nombre = request.getParameter("nombre");
         String sl_apellido1 = request.getParameter("apellido1");
         String sl_apellido2 = request.getParameter("apellido2");
@@ -62,7 +70,6 @@ public class ServletRegistroUser extends HttpServlet {
         } catch (ParseException ex) {
 
         }
-         System.out.println(sl_fecNac);
 
         int il_telefono = Integer.parseInt(request.getParameter("telefono"));
         String sl_direccion = request.getParameter("direccion");
@@ -70,14 +77,37 @@ public class ServletRegistroUser extends HttpServlet {
         Usuario u = new Usuario(sl_contrasena, bl_tipo, p);
         try {
             gP.agregarPersona(p);
-             gU.agregarUsuario(u);
+            gU.agregarUsuario(u);
+            HttpSession sesion = request.getSession(true);
+            sesion.setAttribute("usuario", u);
+            response.sendRedirect(destino);
         } catch (SQLException ex) {
+            
+            error = "Error al registrar Usuario, intentelo nuevamente..";
+            sesion_error.setAttribute("error", error + "_" + "formulario-registro.jsp");
+            response.sendRedirect("paginaError.jsp");
+            
             Logger.getLogger(ServletRegistroUser.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
+            
+            error = "Error al registrar Usuario, intentelo nuevamente..";
+            sesion_error.setAttribute("error", error + "_" + "formulario-registro.jsp");
+            response.sendRedirect("paginaError.jsp");
+            
             Logger.getLogger(ServletRegistroUser.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
+            
+            error = "Error al registrar Usuario, intentelo nuevamente..";
+            sesion_error.setAttribute("error", error + "_" + "formulario-registro.jsp");
+            response.sendRedirect("paginaError.jsp");
+            
             Logger.getLogger(ServletRegistroUser.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
+            
+            error = "Error al registrar Usuario, intentelo nuevamente..";
+            sesion_error.setAttribute("error", error + "_" + "formulario-registro.jsp");
+            response.sendRedirect("paginaError.jsp");
+            
             Logger.getLogger(ServletRegistroUser.class.getName()).log(Level.SEVERE, null, ex);
         }
        
@@ -141,5 +171,6 @@ public class ServletRegistroUser extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+    
 
 }

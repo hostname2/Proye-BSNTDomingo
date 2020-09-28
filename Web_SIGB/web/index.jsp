@@ -29,9 +29,8 @@
                         <a href="#" onclick="LoginToggle()">Inicio Sesión</a>
                         <a href="Busqueda.jsp">Búsqueda</a>
                         <a href="ListadoBusqueda.jsp">Listado</a>
-                        <a href="#">Servicios</a>
-                        <a href="#">Préstamos</a>
-                        <a href="http://www.santodomingo.go.cr/">Municipalidad</a>
+                        <a href="mi-cuenta.jsp">Mi Cuenta</a>
+                        <a href="cliente.jsp">Cliente</a>
                         <a href="administracion.jsp">Administración</a>
                     </nav>
                 </div>
@@ -49,9 +48,9 @@
                 <div class="text">
                     <h1>Inicio de Sesión</h1>
                 </div>
-                <form action="#">
-                    <input type="text" placeholder="Cédula">
-                    <input type="password" placeholder="Contraseña">
+                <form action="SeveltLogin" method="POST">
+                    <input type="text" placeholder="Cédula" name="cedula" required>
+                    <input type="password" placeholder="Contraseña" name="contrasena" required>
                     <input type="submit" value="Iniciar" class="iniciar">
                     <a href="formulario-registro.jsp">Regístrese aquí</a>
                 </form>

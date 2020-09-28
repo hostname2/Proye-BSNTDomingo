@@ -18,6 +18,7 @@
 
         <title>Biblioteca Municipal Isaac Felipe Azofeifa</title>
     </head>
+   <%-- <jsp:useBean class="Beans.BeanUsuario" id="usuario" scope="session"></jsp:useBean> --%>
     <body>
         <div class="box-area">
             <header>
@@ -27,11 +28,9 @@
                     </div>
                     <nav>
                         <a href="index.html">Salir</a>
-                        <a href="#">Búsqueda</a>
-                        <a href="#">Servicios</a>
-                        <a href="#">Préstamos</a>
-                        <a href="http://www.santodomingo.go.cr/">Municipalidad</a>
-                        <a href="#">Contacto</a>
+                        <a href="Busqueda.jsp">Búsqueda</a>
+                        <a href="ListadoBusqueda.jsp">Listado</a>
+                        <a href="mi-cuenta.jsp">Mi Cuenta</a>
                     </nav>
                 </div>
             </header>

@@ -2,8 +2,9 @@ package SIGB.Modelo.Dao.IMEC;
 
 public enum IMEC_Usuario {
     INSERTAR("INSERT INTO Usuario (contrasenia, Tipo, Persona_idPersona) VALUES (?, ?, ?); "),
-    // CONSULTAR_ID("SELECT * FROM Usuario WHERE id_usuario = ?; "),
+    CONSULTAR_ID("SELECT * FROM Usuario WHERE Persona_idPersona = ?; "),
     CONSULTAR("SELECT * FROM Usuario WHERE Persona_idPersona = ?; "),
+    CONSULTAR_VERIFICAR("SELECT * FROM Usuario WHERE Persona_idPersona = ? and contrasenia = ?; "),
     //CONSULTAR_NOMBRE("SELECT * FROM Usuario WHERE id_usuario = ?; "),
     MODIFICAR("UPDATE Usuario SET contrasenia = ? WHERE Persona_idPersona = ?; "),
     EXCLUIR("DELETE FROM Usuario WHERE Persona_idPersona=?; ");
